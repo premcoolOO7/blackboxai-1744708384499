@@ -1,0 +1,46 @@
+Sample Job Description for Prompt Engineer Role:
+
+We are seeking a seasoned Prompt Engineer with expertise in designing and optimizing large language model (LLM) workflows. The ideal candidate will have experience implementing advanced prompt engineering techniques such as chain-of-thought prompting, retrieval-augmented generation (RAG), and fine-tuning. Responsibilities include developing prompt templates, evaluating model outputs using metrics like BLEU and ROUGE, and integrating AI tools such as LangChain and OpenAI API. Familiarity with token management, bias mitigation, and context window optimization is essential. Experience with multimodal prompting and AI safety best practices is a plus.
+
+Sample Resume for Prompt Engineer:
+
+Profile Summary:
+Seasoned Prompt Engineer with 4 years experience designing LLM workflows, optimizing AI outputs, and implementing chain-of-thought and RAG techniques. Proven success in reducing hallucination rates by 42% in customer service chatbots.
+
+Technical Skills:
+- LLM Architectures: GPT-4, Claude, Gemini
+- Prompt Engineering Patterns: Few-shot, Role-based, Cognitive Verifiers
+- Evaluation Metrics: BLEU, ROUGE, Human Evaluation
+- Tools: LangChain, OpenAI API, Hugging Face
+- Token Management, Bias Mitigation, Context Window Optimization
+- Multimodal Prompting
+
+Professional Experience:
+AI Solutions Inc. — Prompt Engineer (2019 - Present)
+- Engineered dynamic few-shot prompting system utilizing chain-of-thought prompting that reduced hallucination rates by 42%.
+- Developed retrieval-augmented generation pipelines improving response relevance by 35%.
+- Designed custom evaluation frameworks for prompt output quality using BLEU and ROUGE metrics.
+- Collaborated with cross-functional teams to integrate prompt systems into production AI applications.
+
+Projects:
+- Complex prompt chaining implementation for multi-turn dialogue systems.
+- Custom evaluation framework development for prompt output assessment.
+- Cross-modal integration of text and image prompts for enhanced AI understanding.
+
+Certifications:
+- OpenAI Prompt Engineering Certification
+- DeepLearning.AI ChatGPT Prompt Engineering
+- Kaggle Prompt Engineering Competitions
+
+Measurable Achievements:
+- Reduced hallucination rates by 42% through advanced prompt engineering.
+- Improved response relevance by 35% with RAG pipeline implementation.
+
+Buzzwords to Avoid:
+- Synergy
+- Paradigm shift
+- Ninja
+- Rockstar
+- Guru
+
+This sample can be used as a template to optimize your resume for prompt engineering and AI roles.
