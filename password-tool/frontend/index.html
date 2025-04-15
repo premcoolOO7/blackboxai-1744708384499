@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Password Hashing Tool</title>
+  <script>
+    async function registerUser() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      if (!username || !password) {
+        alert('Please enter username and password');
+        return;
+      }
+      const res = await fetch('/password-tool/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json();
+      alert(data.message || data.error);
+    }
+
+    async function loginUser() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      if (!username || !password) {
+        alert('Please enter username and password');
+        return;
+      }
+      const res = await fetch('/password-tool/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json();
+      alert(data.message || data.error);
+    }
+  </script>
+</head>
+<body style="font-family: Arial, sans-serif; max-width: 400px; margin: 2rem auto;">
+  <h1>Password Hashing Tool</h1>
+  <label>Username:</label><br />
+  <input type="text" id="username" /><br /><br />
+  <label>Password:</label><br />
+  <input type="password" id="password" /><br /><br />
+  <button onclick="registerUser()">Register</button>
+  <button onclick="loginUser()">Login</button>
+</body>
+</html>
