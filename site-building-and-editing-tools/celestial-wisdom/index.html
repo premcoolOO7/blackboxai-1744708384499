@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Celestial Wisdom - Professional Astrology Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Arial&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a1a;
+            color: #fff;
+        }
+        header {
+            background: rgba(10, 10, 26, 0.9);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 2rem;
+            color: #d4af37;
+            font-family: 'Georgia', serif;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 10, 26, 0.7), rgba(10, 10, 26, 0.7)),
+                        url('stars-bg.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1rem;
+            margin-top: 60px;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .cta-button {
+            background-color: #d4af37;
+            color: #0a0a1a;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #b69830;
+        }
+        .services {
+            padding: 5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #d4af37;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .testimonials {
+            padding: 5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #d4af37;
+        }
+        footer {
+            background: #04040d;
+            padding: 3rem 1rem;
+            text-align: center;
+            color: #888;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Celestial Wisdom</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+            <a href="vedic-horoscope.html" class="ms-3 text-warning fw-bold">Vedic Horoscope</a>
+          </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Discover Your Destiny</h1>
+            <p>Professional Astrological Guidance for Life's Journey</p>
+            <button class="cta-button" onclick="alert('Booking feature coming soon!')">Book a Consultation</button>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Birth Chart Reading</h3>
+                <p>Uncover your life's blueprint through detailed natal chart analysis</p>
+            </div>
+            <div class="service-card">
+                <h3>Relationship Compatibility</h3>
+                <p>Understand your romantic and business relationships</p>
+            </div>
+            <div class="service-card">
+                <h3>Career Guidance</h3>
+                <p>Align your professional path with cosmic influences</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <h2>Client Testimonials</h2>
+        <p class="text-center text-muted">Coming soon...</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Celestial Wisdom. All rights reserved.</p>
+    </footer>
+</body>
+</html>
