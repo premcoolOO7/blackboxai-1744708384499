@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All-in-One Tool Suite</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #121212;
+      color: #e0e0e0;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: linear-gradient(90deg, #4c51bf, #6b46c1);
+      padding: 1.5rem 2rem;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      user-select: none;
+      box-shadow: 0 4px 12px rgba(107, 70, 193, 0.7);
+    }
+    main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 1rem;
+      gap: 2rem;
+    }
+    .tool-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .tool-card {
+      background: #1f1f2e;
+      border-radius: 1rem;
+      padding: 1.5rem 2rem;
+      width: 280px;
+      box-shadow: 0 0 20px rgba(107, 70, 193, 0.5);
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+      color: #cbd5e1;
+      text-align: center;
+    }
+    .tool-card:hover, .tool-card:focus {
+      background: #6b46c1;
+      color: white;
+      outline: none;
+      box-shadow: 0 0 30px #6b46c1;
+    }
+    .tool-card i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: inherit;
+      filter: drop-shadow(0 0 4px currentColor);
+    }
+    .tool-card h3 {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .tool-card p {
+      font-size: 0.9rem;
+      color: inherit;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <header>All-in-One Tool Suite</header>
+  <main>
+    <div class="tool-list" role="list" aria-label="Available Tools">
+      <div class="tool-card" tabindex="0" role="listitem" aria-label="Website Builder and Editor" onclick="navigateTo('website-building-and-editing-tools/index.html')">
+        <i class="fas fa-code"></i>
+        <h3>Website Builder & Editor</h3>
+        <p>Build and edit websites with AI assistance and drag-and-drop features.</p>
+      </div>
+      <div class="tool-card" tabindex="0" role="listitem" aria-label="Video Editing Suite" onclick="navigateTo('video-editing-suite/index.html')">
+        <i class="fas fa-video"></i>
+        <h3>Video Editing Suite</h3>
+        <p>Professional video editing tools with advanced effects and AI enhancements.</p>
+      </div>
+      <div class="tool-card" tabindex="0" role="listitem" aria-label="SEO Tools" onclick="navigateTo('tools/seo-tools.html')">
+        <i class="fas fa-search"></i>
+        <h3>SEO Tools</h3>
+        <p>Optimize your website with keyword research, analytics, and SEO best practices.</p>
+      </div>
+      <div class="tool-card" tabindex="0" role="listitem" aria-label="Finance Tools" onclick="navigateTo('tools/finance-tools.html')">
+        <i class="fas fa-dollar-sign"></i>
+        <h3>Finance Tools</h3>
+        <p>Manage your finances with calculators, budgeting, and financial analysis tools.</p>
+      </div>
+      <div class="tool-card" tabindex="0" role="listitem" aria-label="Social Media Tools" onclick="navigateTo('tools/social-media-tools.html')">
+        <i class="fas fa-hashtag"></i>
+        <h3>Social Media Tools</h3>
+        <p>Enhance your social media presence with scheduling, analytics, and content creation.</p>
+      </div>
+      <div class="tool-card" tabindex="0" role="listitem" aria-label="Developer Tools" onclick="navigateTo('tools/devtools.html')">
+        <i class="fas fa-tools"></i>
+        <h3>Developer Tools</h3>
+        <p>Utilities and tools for developers to streamline their workflow and debugging.</p>
+      </div>
+    </div>
+  </main>
+  <script>
+    function navigateTo(path) {
+      window.location.href = path;
+    }
+  </script>
+</body>
+</html>
