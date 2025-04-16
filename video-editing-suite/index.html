@@ -103,6 +103,14 @@
       font-weight: 700;
       font-size: 1.25rem;
       user-select: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .video-preview video {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 1rem;
+      background: black;
     }
     .controls {
       margin-top: 1rem;
@@ -123,6 +131,29 @@
       user-select: none;
     }
     .controls button:hover, .controls button:focus {
+      background: #9f7aea;
+      outline: none;
+      box-shadow: 0 0 10px #9f7aea;
+    }
+    .file-input-wrapper {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .file-input-wrapper input[type="file"] {
+      display: none;
+    }
+    .file-input-label {
+      background: #6b46c1;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+      user-select: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+    .file-input-label:hover, .file-input-label:focus {
       background: #9f7aea;
       outline: none;
       box-shadow: 0 0 10px #9f7aea;
@@ -149,8 +180,12 @@
     </aside>
     <section class="workspace" aria-label="Video Editing Workspace">
       <h2>Video Preview</h2>
+      <div class="file-input-wrapper">
+        <label for="videoFileInput" class="file-input-label" tabindex="0">Load Video</label>
+        <input type="file" id="videoFileInput" accept="video/*" />
+      </div>
       <div class="video-preview" id="videoPreview" tabindex="0" aria-live="polite" aria-atomic="true">
-        Video preview will appear here.
+        <video id="videoElement" controls></video>
       </div>
       <div class="controls" role="group" aria-label="Playback Controls">
         <button id="playBtn" aria-label="Play"><i class="fas fa-play"></i></button>
@@ -160,19 +195,33 @@
     </section>
   </main>
   <script>
-    const videoPreview = document.getElementById('videoPreview');
+    const videoElement = document.getElementById('videoElement');
+    const videoFileInput = document.getElementById('videoFileInput');
     const playBtn = document.getElementById('playBtn');
     const pauseBtn = document.getElementById('pauseBtn');
     const stopBtn = document.getElementById('stopBtn');
 
+    videoFileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const fileURL = URL.createObjectURL(file);
+        videoElement.src = fileURL;
+        videoElement.load();
+        videoElement.play();
+      }
+    });
+
     playBtn.addEventListener('click', () => {
-      videoPreview.textContent = 'Playing video... (demo placeholder)';
+      videoElement.play();
     });
+
     pauseBtn.addEventListener('click', () => {
-      videoPreview.textContent = 'Video paused.';
+      videoElement.pause();
     });
+
     stopBtn.addEventListener('click', () => {
-      videoPreview.textContent = 'Video stopped.';
+      videoElement.pause();
+      videoElement.currentTime = 0;
     });
   </script>
 </body>
