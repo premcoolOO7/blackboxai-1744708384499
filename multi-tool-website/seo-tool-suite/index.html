@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SEO Tool Suite</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+  <header class="bg-blue-700 text-white p-4 text-center text-2xl font-semibold">
+    SEO Tool Suite
+  </header>
+  <main class="flex-grow container mx-auto p-4">
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-4">Keyword Research</h2>
+      <div class="flex gap-2 mb-4">
+        <input id="keywordInput" type="text" placeholder="Enter keyword" class="flex-grow p-2 border border-gray-300 rounded" />
+        <button id="searchKeywordBtn" class="bg-blue-600 text-white px-4 rounded hover:bg-blue-700">Search</button>
+      </div>
+      <div id="keywordResults" class="bg-white p-4 rounded shadow max-h-64 overflow-auto"></div>
+    </section>
+    <section>
+      <h2 class="text-xl font-bold mb-4">Site Audit</h2>
+      <div class="flex gap-2 mb-4">
+        <input id="auditUrlInput" type="url" placeholder="Enter website URL" class="flex-grow p-2 border border-gray-300 rounded" />
+        <button id="runAuditBtn" class="bg-green-600 text-white px-4 rounded hover:bg-green-700">Run Audit</button>
+      </div>
+      <div id="auditResults" class="bg-white p-4 rounded shadow max-h-64 overflow-auto"></div>
+    </section>
+  </main>
+  <script>
+    const keywordInput = document.getElementById('keywordInput');
+    const searchKeywordBtn = document.getElementById('searchKeywordBtn');
+    const keywordResults = document.getElementById('keywordResults');
+
+    const auditUrlInput = document.getElementById('auditUrlInput');
+    const runAuditBtn = document.getElementById('runAuditBtn');
+    const auditResults = document.getElementById('auditResults');
+
+    searchKeywordBtn.addEventListener('click', () => {
+      const query = keywordInput.value.trim();
+      if (!query) {
+        alert('Please enter a keyword');
+        return;
+      }
+      keywordResults.innerHTML = 'Loading...';
+      fetch(`http://localhost:5000/api/keyword-research?query=${encodeURIComponent(query)}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.error) {
+            keywordResults.innerHTML = `<p class="text-red-600">${data.error}</p>`;
+            return;
+          }
+          if (data.results.length === 0) {
+            keywordResults.innerHTML = '<p>No results found.</p>';
+            return;
+          }
+          const list = document.createElement('ul');
+          list.className = 'list-disc pl-5';
+          data.results.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${item.keyword}</strong> - Volume: ${item.search_volume}, Difficulty: ${item.difficulty}, Trend: ${item.trend}`;
+            list.appendChild(li);
+          });
+          keywordResults.innerHTML = '';
+          keywordResults.appendChild(list);
+        })
+        .catch(() => {
+          keywordResults.innerHTML = '<p class="text-red-600">Error fetching keyword data.</p>';
+        });
+    });
+
+    runAuditBtn.addEventListener('click', () => {
+      const url = auditUrlInput.value.trim();
+      if (!url) {
+        alert('Please enter a URL');
+        return;
+      }
+      auditResults.innerHTML = 'Running audit...';
+      fetch('http://localhost:5000/api/site-audit', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({url})
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          auditResults.innerHTML = `<p class="text-red-600">${data.error}</p>`;
+          return;
+        }
+        let html = `<p>Audit Score: <strong>${data.score}</strong></p>`;
+        html += '<h3 class="font-semibold mt-2">Issues:</h3><ul class="list-disc pl-5">';
+        data.issues.forEach(issue => {
+          html += `<li>${issue.type.replace(/_/g, ' ')}: ${issue.count}</li>`;
+        });
+        html += '</ul>';
+        html += '<h3 class="font-semibold mt-2">Recommendations:</h3><ul class="list-disc pl-5">';
+        data.recommendations.forEach(rec => {
+          html += `<li>${rec}</li>`;
+        });
+        html += '</ul>';
+        auditResults.innerHTML = html;
+      })
+      .catch(() => {
+        auditResults.innerHTML = '<p class="text-red-600">Error running site audit.</p>';
+      });
+    });
+  </script>
+</body>
+</html>
