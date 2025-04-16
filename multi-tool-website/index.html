@@ -3,117 +3,264 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Multi-Tool Website</title>
+  <title>AllInOneTools - Your Ultimate Digital Toolkit</title>
+  <meta name="description" content="AllInOneTools: Edit videos, optimize SEO, build websites, refine text, and explore horoscopes—all in one place." />
+  <meta name="keywords" content="all-in-one SEO tool, online video editor, free website builder, writing tools, horoscope, digital toolkit" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #1a202c;
-      color: #edf2f7;
+      background-color: #f9fafb;
       margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      color: #111827;
     }
-    header {
-      background-color: #2d3748;
-      padding: 1.5rem 2rem;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #edf2f7;
-      text-align: center;
-      user-select: none;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+    /* Animation for hero icons */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
-    main {
-      flex-grow: 1;
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+    .float {
+      animation: float 3s ease-in-out infinite;
     }
-    .tool-card {
-      background-color: #2d3748;
-      border-radius: 0.75rem;
-      padding: 1.5rem 2rem;
-      box-shadow: 0 0 15px rgba(66, 153, 225, 0.6);
-      cursor: pointer;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #cbd5e0;
-      text-align: center;
-      user-select: none;
+    /* Scrollbar for carousel */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
     }
-    .tool-card:hover, .tool-card:focus {
-      background-color: #3182ce;
-      color: white;
-      outline: none;
-      box-shadow: 0 0 25px #3182ce;
-    }
-    .tool-card i {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: inherit;
-      filter: drop-shadow(0 0 6px currentColor);
-    }
-    .tool-card h3 {
-      font-weight: 700;
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-    .tool-card p {
-      font-size: 0.9rem;
-      color: inherit;
-      opacity: 0.85;
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   </style>
 </head>
-<body>
-  <header>Multi-Tool Website</header>
-  <main role="list" aria-label="Available tools">
-    <div class="tool-card" tabindex="0" role="listitem" aria-label="SEO Tools" onclick="navigateTo('tools/seo-tools.html')">
-      <i class="fas fa-search"></i>
-      <h3>SEO Tools</h3>
-      <p>Optimize your website with keyword research, analytics, and SEO best practices.</p>
+<body class="flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto flex items-center justify-between px-6 py-4">
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-toolbox text-3xl text-blue-600"></i>
+        <span class="text-2xl font-bold text-gray-900">AllInOneTools</span>
+      </div>
+      <nav class="hidden md:flex space-x-6 items-center">
+        <div class="relative group">
+          <button class="text-gray-700 font-semibold hover:text-blue-600 focus:outline-none">SEO & Analytics <i class="fas fa-chevron-down ml-1 text-sm"></i></button>
+          <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-10">
+            <a href="tools/seo-tools.html" class="block px-4 py-2 hover:bg-blue-50">SEO Tools</a>
+            <a href="seo-tool-suite/index.html" class="block px-4 py-2 hover:bg-blue-50">Analytics Suite</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="text-gray-700 font-semibold hover:text-blue-600 focus:outline-none">Creative Studio <i class="fas fa-chevron-down ml-1 text-sm"></i></button>
+          <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-10">
+            <a href="photo-editing-suite/index-part1.html" class="block px-4 py-2 hover:bg-blue-50">Image Editing</a>
+            <a href="video-editing-suite/index.html" class="block px-4 py-2 hover:bg-blue-50">Video Editing</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="text-gray-700 font-semibold hover:text-blue-600 focus:outline-none">Writing Tools <i class="fas fa-chevron-down ml-1 text-sm"></i></button>
+          <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-10">
+            <a href="tools/word-manipulation-tool.html" class="block px-4 py-2 hover:bg-blue-50">Word Manipulation</a>
+            <a href="tools/text-tools.html" class="block px-4 py-2 hover:bg-blue-50">Text Utilities</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="text-gray-700 font-semibold hover:text-blue-600 focus:outline-none">Web Builder <i class="fas fa-chevron-down ml-1 text-sm"></i></button>
+          <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-10">
+            <a href="site-building-and-editing-tools/index.html" class="block px-4 py-2 hover:bg-blue-50">Website Builder</a>
+            <a href="website-building-and-editing-tools/index.html" class="block px-4 py-2 hover:bg-blue-50">Site Editor</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="text-gray-700 font-semibold hover:text-blue-600 focus:outline-none">Lifestyle & Fun <i class="fas fa-chevron-down ml-1 text-sm"></i></button>
+          <div class="absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-10">
+            <a href="site-building-and-editing-tools/celestial-wisdom/index.html" class="block px-4 py-2 hover:bg-blue-50">Horoscopes</a>
+            <a href="tools/habit-trackers.html" class="block px-4 py-2 hover:bg-blue-50">Habit Trackers</a>
+            <a href="tools/quizzes.html" class="block px-4 py-2 hover:bg-blue-50">Quizzes</a>
+          </div>
+        </div>
+      </nav>
+      <div class="hidden md:flex items-center space-x-4">
+        <input type="search" placeholder="Search tools..." aria-label="Search tools" class="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+        <button class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-md transition">Get Started Free</button>
+      </div>
+      <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
     </div>
-    <div class="tool-card" tabindex="0" role="listitem" aria-label="Video Tools" onclick="navigateTo('tools/video-tools.html')">
-      <i class="fas fa-video"></i>
-      <h3>Video Tools</h3>
-      <p>Professional video editing and adding features with advanced effects.</p>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+      <nav class="flex flex-col px-6 py-4 space-y-2">
+        <a href="#" class="font-semibold text-gray-700 hover:text-blue-600">SEO & Analytics</a>
+        <a href="#" class="font-semibold text-gray-700 hover:text-blue-600">Creative Studio</a>
+        <a href="#" class="font-semibold text-gray-700 hover:text-blue-600">Writing Tools</a>
+        <a href="#" class="font-semibold text-gray-700 hover:text-blue-600">Web Builder</a>
+        <a href="#" class="font-semibold text-gray-700 hover:text-blue-600">Lifestyle & Fun</a>
+        <a href="#" class="bg-orange-500 text-white font-semibold px-4 py-2 rounded-md text-center mt-2">Get Started Free</a>
+      </nav>
     </div>
-    <div class="tool-card" tabindex="0" role="listitem" aria-label="Word Manipulation Tool" onclick="navigateTo('tools/word-manipulation-tool.html')">
-      <i class="fas fa-font"></i>
-      <h3>Word Manipulation Tool</h3>
-      <p>Advanced text manipulation and formatting utilities.</p>
-    </div>
-    <div class="tool-card" tabindex="0" role="listitem" aria-label="Developer Tools" onclick="navigateTo('tools/devtools.html')">
-      <i class="fas fa-tools"></i>
-      <h3>Developer Tools</h3>
-      <p>Utilities and tools for developers to streamline their workflow and debugging.</p>
-    </div>
-    <div class="tool-card" tabindex="0" role="listitem" aria-label="Social Media Tools" onclick="navigateTo('tools/social-media-tools.html')">
-      <i class="fas fa-hashtag"></i>
-      <h3>Social Media Tools</h3>
-      <p>Enhance your social media presence with scheduling, analytics, and content creation.</p>
-    </div>
-    <div class="tool-card" tabindex="0" role="listitem" aria-label="Finance Tools" onclick="navigateTo('tools/finance-tools.html')">
-      <i class="fas fa-dollar-sign"></i>
-      <h3>Finance Tools</h3>
-      <p>Financial calculators and accounting utilities.</p>
-    </div>
-  </main>
+  </header>
+
   <script>
-    function navigateTo(path) {
-      window.location.href = path;
-    }
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
   </script>
+
+  <!-- Hero Section -->
+  <section class="bg-white py-20 px-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Your Ultimate Toolkit for Everything Digital.</h1>
+    <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-3xl mx-auto">Edit videos, optimize SEO, build websites, refine text, and explore horoscopes—all in one place.</p>
+    <div class="flex justify-center space-x-8 mb-10">
+      <div class="grid grid-cols-3 gap-6 max-w-xl">
+        <i class="fas fa-chart-line text-blue-600 text-5xl float"></i>
+        <i class="fas fa-video text-blue-600 text-5xl float animation-delay-500"></i>
+        <i class="fas fa-magic text-blue-600 text-5xl float animation-delay-1000"></i>
+        <i class="fas fa-pencil-alt text-blue-600 text-5xl float animation-delay-1500"></i>
+        <i class="fas fa-hands-helping text-blue-600 text-5xl float animation-delay-2000"></i>
+        <i class="fas fa-star text-blue-600 text-5xl float animation-delay-2500"></i>
+      </div>
+    </div>
+    <div class="space-x-6">
+      <a href="#tools" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md transition">Explore Tools Now</a>
+      <a href="#demo" class="text-blue-600 font-semibold hover:underline">Watch Demo (60 sec)</a>
+    </div>
+  </section>
+
+  <!-- Tool Categories Section -->
+  <section id="tools" class="py-16 px-6 bg-gray-50">
+    <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Tool Categories</h2>
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <a href="tools/seo-tools.html" class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition cursor-pointer block">
+        <i class="fas fa-search fa-3x text-blue-600 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">SEO & Analytics</h3>
+        <p class="text-gray-600">Rank higher, track traffic, and audit websites.</p>
+      </a>
+      <a href="photo-editing-suite/index-part1.html" class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition cursor-pointer block">
+        <i class="fas fa-paint-brush fa-3x text-blue-600 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Creative Studio</h3>
+        <p class="text-gray-600">Edit images, videos, and design thumbnails.</p>
+      </a>
+      <a href="tools/word-manipulation-tool.html" class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition cursor-pointer block">
+        <i class="fas fa-keyboard fa-3x text-blue-600 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Writing Toolkit</h3>
+        <p class="text-gray-600">Paraphrase, grammar-check, and generate content.</p>
+      </a>
+      <a href="site-building-and-editing-tools/index.html" class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition cursor-pointer block">
+        <i class="fas fa-code fa-3x text-blue-600 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Web Builder</h3>
+        <p class="text-gray-600">Drag-and-drop editor with templates and hosting.</p>
+      </a>
+      <a href="site-building-and-editing-tools/celestial-wisdom/index.html" class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition cursor-pointer block">
+        <i class="fas fa-smile fa-3x text-blue-600 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Lifestyle & Fun</h3>
+        <p class="text-gray-600">Daily horoscopes, habit trackers, and quizzes.</p>
+      </a>
+      <a href="tools/finance-tools.html" class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition cursor-pointer block">
+        <i class="fas fa-th-large fa-3x text-blue-600 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">More Tools</h3>
+        <p class="text-gray-600">PDF converters, calculators, and 50+ utilities.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Featured Tools Section -->
+  <section class="py-16 px-6 bg-white">
+    <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Most Popular Tools This Week</h2>
+    <div class="max-w-6xl mx-auto overflow-x-auto no-scrollbar flex space-x-6 pb-4">
+      <div class="min-w-[280px] bg-gray-50 rounded-lg shadow-md p-6 flex flex-col justify-between">
+        <h3 class="text-xl font-semibold mb-2">AI Image Enhancer</h3>
+        <p class="text-gray-600 mb-4">Enhance your images with AI-powered tools for clarity and style.</p>
+        <button class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-md transition self-start">Try Now</button>
+      </div>
+      <div class="min-w-[280px] bg-gray-50 rounded-lg shadow-md p-6 flex flex-col justify-between">
+        <h3 class="text-xl font-semibold mb-2">SEO Keyword Generator</h3>
+        <p class="text-gray-600 mb-4">Generate targeted keywords to boost your website traffic.</p>
+        <button class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-md transition self-start">Try Now</button>
+      </div>
+      <div class="min-w-[280px] bg-gray-50 rounded-lg shadow-md p-6 flex flex-col justify-between">
+        <h3 class="text-xl font-semibold mb-2">Horoscope Compatibility Checker</h3>
+        <p class="text-gray-600 mb-4">Discover your compatibility with friends and partners.</p>
+        <button class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-md transition self-start">Try Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-16 px-6 bg-gradient-to-r from-blue-50 via-white to-blue-50 rounded-lg mx-6 my-12 shadow-lg">
+    <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Why juggle 10 apps when you can use one?</h2>
+    <ul class="max-w-3xl mx-auto list-disc list-inside text-gray-700 space-y-3 text-lg">
+      <li>No downloads—works directly in your browser.</li>
+      <li>Collaborate with teams in real time.</li>
+      <li>Secure, GDPR-compliant data handling.</li>
+      <li>Free forever plan with premium upgrades.</li>
+    </ul>
+  </section>
+  <!-- Advertisement Section -->
+  <section class="py-12 px-6 bg-orange-100 rounded-lg mx-6 my-12 shadow-lg text-center">
+    <h3 class="text-2xl font-semibold text-orange-700 mb-4">Upgrade to Premium for Exclusive Features!</h3>
+    <p class="text-orange-800 mb-6 max-w-xl mx-auto">Get faster processing, priority support, and access to advanced tools with our premium plan.</p>
+    <a href="#" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md transition">Upgrade Now</a>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-16 px-6 bg-white">
+    <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">What Our Users Say</h2>
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      <blockquote class="bg-gray-50 p-6 rounded-lg shadow-md text-gray-700 italic">
+        "Saved me hours switching between tools!" – <span class="font-semibold">Marketer</span>
+      </blockquote>
+      <blockquote class="bg-gray-50 p-6 rounded-lg shadow-md text-gray-700 italic">
+        "The horoscope tool is weirdly accurate." – <span class="font-semibold">Lifestyle Blogger</span>
+      </blockquote>
+    </div>
+    <div class="max-w-4xl mx-auto mt-12 flex justify-center space-x-12 text-gray-400">
+      <i class="fab fa-apple fa-2x"></i>
+      <i class="fab fa-google fa-2x"></i>
+      <i class="fab fa-microsoft fa-2x"></i>
+      <i class="fab fa-amazon fa-2x"></i>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 py-10 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+        <ul>
+          <li><a href="#" class="hover:underline hover:text-white">Pricing</a></li>
+          <li><a href="#" class="hover:underline hover:text-white">Blog</a></li>
+          <li><a href="#" class="hover:underline hover:text-white">Support</a></li>
+          <li><a href="#" class="hover:underline hover:text-white">API for Developers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-4">Newsletter</h3>
+        <form class="flex flex-col space-y-3">
+          <input type="email" placeholder="Your email address" aria-label="Email address" class="px-3 py-2 rounded-md text-gray-900" />
+          <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-md transition">Subscribe</button>
+        </form>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-4">Follow Us</h3>
+        <div class="flex space-x-4 text-2xl">
+          <a href="#" aria-label="LinkedIn" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube" class="hover:text-white"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-4">Legal</h3>
+        <ul>
+          <li><a href="#" class="hover:underline hover:text-white">Privacy Policy</a></li>
+          <li><a href="#" class="hover:underline hover:text-white">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
