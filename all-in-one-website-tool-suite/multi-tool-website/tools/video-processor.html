@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Video Processor - Multi-Tools Website</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      padding-top: 70px;
+      padding-bottom: 70px;
+      background-color: #f8f9fa;
+    }
+    header, footer {
+      position: fixed;
+      width: 100%;
+      z-index: 1030;
+      background-color: #343a40;
+      color: white;
+    }
+    header {
+      top: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+    footer {
+      bottom: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+    .container {
+      max-width: 900px;
+    }
+    .section-title {
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #212529;
+    }
+    #videoPreview {
+      max-width: 100%;
+      margin-top: 1rem;
+      border: 1px solid #dee2e6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container d-flex align-items-center">
+      <i class="fas fa-video fa-lg me-2"></i>
+      <h1 class="h5 mb-0">Video Processor</h1>
+      <nav class="ms-auto">
+        <a href="../index.html" class="btn btn-outline-light btn-sm">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mt-4">
+    <h2>Advanced Video Processing Tool</h2>
+
+    <section>
+      <h3 class="section-title">Upload Video</h3>
+      <input type="file" id="videoUpload" accept="video/*" class="form-control" />
+      <video id="videoPreview" controls></video>
+    </section>
+
+    <section>
+      <h3 class="section-title">Conversion</h3>
+      <label for="formatSelect" class="form-label">Output Format:</label>
+      <select id="formatSelect" class="form-select w-auto">
+        <option value="mp4">MP4</option>
+        <option value="avi">AVI</option>
+        <option value="mov">MOV</option>
+        <option value="webm">WEBM</option>
+        <option value="gif">GIF</option>
+      </select>
+      <button id="convertBtn" class="btn btn-primary mt-2" disabled>Convert Video</button>
+    </section>
+
+    <section>
+      <h3 class="section-title">Trimming</h3>
+      <div class="row g-2 align-items-center">
+        <div class="col-auto">
+          <label for="startTime" class="col-form-label">Start Time (seconds):</label>
+        </div>
+        <div class="col-auto">
+          <input type="number" id="startTime" class="form-control" min="0" step="0.1" />
+        </div>
+        <div class="col-auto">
+          <label for="endTime" class="col-form-label">End Time (seconds):</label>
+        </div>
+        <div class="col-auto">
+          <input type="number" id="endTime" class="form-control" min="0" step="0.1" />
+        </div>
+      </div>
+      <button id="trimBtn" class="btn btn-primary mt-2" disabled>Trim Video</button>
+    </section>
+
+    <section>
+      <h3 class="section-title">Text Overlay</h3>
+      <input type="text" id="overlayText" class="form-control" placeholder="Enter text to overlay" />
+      <label for="fontSize" class="form-label mt-2">Font Size:</label>
+      <input type="number" id="fontSize" class="form-control w-auto" min="10" max="100" value="24" />
+      <button id="addTextBtn" class="btn btn-primary mt-2" disabled>Add Text Overlay</button>
+    </section>
+
+    <section>
+      <h3 class="section-title">Output</h3>
+      <a id="downloadLink" class="btn btn-success" style="display:none;" download>Download Processed Video</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container text-center">
+      &copy; 2025 Multi-Tools Website. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+  <script>
+    const { createFFmpeg, fetchFile } = FFmpeg;
+    const ffmpeg = createFFmpeg({ log: true });
+    let videoFile = null;
+    let processedData = null;
+
+    const videoUpload = document.getElementById('videoUpload');
+    const videoPreview = document.getElementById('videoPreview');
+    const convertBtn = document.getElementById('convertBtn');
+    const trimBtn = document.getElementById('trimBtn');
+    const addTextBtn = document.getElementById('addTextBtn');
+    const downloadLink = document.getElementById('downloadLink');
+
+    videoUpload.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      videoFile = file;
+      videoPreview.src = URL.createObjectURL(file);
+      videoPreview.load();
+      convertBtn.disabled = false;
+      trimBtn.disabled = false;
+      addTextBtn.disabled = false;
+      downloadLink.style.display = 'none';
+      processedData = null;
+    });
+
+    async function loadFFmpeg() {
+      if (!ffmpeg.isLoaded()) {
+        await ffmpeg.load();
+      }
+    }
+
+    async function convertVideo() {
+      if (!videoFile) return;
+      await loadFFmpeg();
+      const format = document.getElementById('formatSelect').value;
+      ffmpeg.FS('writeFile', 'input', await fetchFile(videoFile));
+      await ffmpeg.run('-i', 'input', `output.${format}`);
+      const data = ffmpeg.FS('readFile', `output.${format}`);
+      processedData = new Blob([data.buffer], { type: `video/${format}` });
+      downloadLink.href = URL.createObjectURL(processedData);
+      downloadLink.download = `converted.${format}`;
+      downloadLink.style.display = 'inline-block';
+    }
+
+    async function trimVideo() {
+      if (!videoFile) return;
+      await loadFFmpeg();
+      const start = document.getElementById('startTime').value || '0';
+      const end = document.getElementById('endTime').value || '';
+      ffmpeg.FS('writeFile', 'input', await fetchFile(videoFile));
+      const args = ['-i', 'input', '-ss', start];
+      if (end) {
+        args.push('-to', end);
+      }
+      args.push('-c', 'copy', 'output.mp4');
+      await ffmpeg.run(...args);
+      const data = ffmpeg.FS('readFile', 'output.mp4');
+      processedData = new Blob([data.buffer], { type: 'video/mp4' });
+      downloadLink.href = URL.createObjectURL(processedData);
+      downloadLink.download = 'trimmed.mp4';
+      downloadLink.style.display = 'inline-block';
+    }
+
+    async function addTextOverlay() {
+      if (!videoFile) return;
+      await loadFFmpeg();
+      const text = document.getElementById('overlayText').value.trim();
+      const fontSize = document.getElementById('fontSize').value || '24';
+      if (!text) {
+        alert('Please enter text to overlay.');
+        return;
+      }
+      ffmpeg.FS('writeFile', 'input', await fetchFile(videoFile));
+      const drawtext = `drawtext=text='${text}':fontcolor=white:fontsize=${fontSize}:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=h-(text_h*2)`;
+      await ffmpeg.run('-i', 'input', '-vf', drawtext, '-codec:a', 'copy', 'output.mp4');
+      const data = ffmpeg.FS('readFile', 'output.mp4');
+      processedData = new Blob([data.buffer], { type: 'video/mp4' });
+      downloadLink.href = URL.createObjectURL(processedData);
+      downloadLink.download = 'text_overlay.mp4';
+      downloadLink.style.display = 'inline-block';
+    }
+
+    convertBtn.addEventListener('click', convertVideo);
+    trimBtn.addEventListener('click', trimVideo);
+    addTextBtn.addEventListener('click', addTextOverlay);
+  </script>
+</body>
+</html>
