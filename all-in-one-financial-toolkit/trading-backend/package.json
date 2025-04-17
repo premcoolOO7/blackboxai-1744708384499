@@ -1,0 +1,13 @@
+{
+  "name": "trading-backend",
+  "version": "1.0.0",
+  "description": "Node.js backend for real-time trading",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.13.0"
+  }
+}
