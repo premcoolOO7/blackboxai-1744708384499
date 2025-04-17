@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Master Photo Editor Pro - Enhanced Version</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Additional styles can be added here */
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+  <header class="bg-white shadow p-6">
+    <h1 class="text-3xl font-semibold text-gray-900">Master Photo Editor Pro</h1>
+    <p class="mt-2 text-gray-600 max-w-xl">Generate stunning images and videos from your text prompts.</p>
+  </header>
+
+  <main class="flex-grow container mx-auto px-4 py-10 flex flex-col items-center">
+    <!-- AI Image Generator Section -->
+    <section class="w-full max-w-xl bg-white rounded-lg shadow-md p-6 mb-10">
+      <h2 class="text-2xl font-semibold mb-4">AI Image Generator</h2>
+      <form id="imageForm" class="flex flex-col sm:flex-row gap-4">
+        <label for="prompt" class="sr-only">Image prompt</label>
+        <input
+          type="text"
+          id="prompt"
+          name="prompt"
+          placeholder="Enter your image description..."
+          class="flex-grow border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+          required
+        />
+        <button
+          type="submit"
+          class="bg-indigo-600 text-white font-semibold rounded-md px-6 py-3 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition flex items-center justify-center"
+        >
+          <i class="fas fa-magic mr-2"></i> Generate
+        </button>
+      </form>
+      <section id="result" class="mt-10 w-full flex justify-center items-center min-h-[300px] bg-white rounded-lg shadow-md p-6">
+        <p class="text-gray-400 italic">Your generated image will appear here.</p>
+      </section>
+    </section>
+
+    <!-- Word-to-Video Converter Section -->
+    <section class="w-full max-w-xl bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-2xl font-semibold mb-4">Word-to-Video Converter</h2>
+      <label for="scriptInput" class="block font-semibold mb-2">Enter your video script:</label>
+      <textarea id="scriptInput" rows="6" class="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" placeholder="Paste or type your script here..."></textarea>
+      <div class="mt-4 flex space-x-4">
+        <button id="enhancePromptBtn" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition flex items-center space-x-2">
+          <i class="fas fa-magic"></i><span>Enhance Prompt</span>
+        </button>
+        <button id="generateScenesBtn" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition flex items-center space-x-2">
+          <i class="fas fa-film"></i><span>Generate Scenes</span>
+        </button>
+      </div>
+      <section id="scenesContainer" class="mt-6 grid grid-cols-1 gap-6">
+        <p class="text-gray-500 italic">No scenes generated yet.</p>
+      </section>
+      <button id="exportBtn" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition mt-4" disabled>Export Scenes JSON</button>
+    </section>
+  </main>
+
+  <footer class="bg-white shadow p-4 text-center text-gray-500 text-sm">
+    &copy; 2024 Master Photo Editor Pro. All rights reserved.
+  </footer>
+
+  <script>
+    // JavaScript functionality for image generation and video script processing
+    const imageForm = document.getElementById('imageForm');
+    const resultSection = document.getElementById('result');
+    const scriptInput = document.getElementById('scriptInput');
+    const enhancePromptBtn = document.getElementById('enhancePromptBtn');
+    const generateScenesBtn = document.getElementById('generateScenesBtn');
+    const scenesContainer = document.getElementById('scenesContainer');
+    const exportBtn = document.getElementById('exportBtn');
+
+    imageForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const prompt = imageForm.prompt.value.trim();
+      if (!prompt) return;
+
+      resultSection.innerHTML = '<p class="text-gray-500">Generating image...</p>';
+      // Simulate image generation delay
+      setTimeout(() => {
+        const imageUrl = "https://source.unsplash.com/600x400/?" + encodeURIComponent(prompt);
+        resultSection.innerHTML = '<img src="' + imageUrl + '" alt="Generated image for ' + prompt + '" class="rounded-md shadow-md max-w-full h-auto transition-transform transform hover:scale-105" />';
+      }, 1500);
+    });
+
+    enhancePromptBtn.addEventListener('click', () => {
+      const original = scriptInput.value.trim();
+      if (!original) {
+        alert('Please enter a script to enhance.');
+        return;
+      }
+      // Example enhancement logic
+      const enhancement = "Add emotional storytelling elements.";
+      scriptInput.value = original + ' ' + enhancement;
+      alert('Prompt enhanced with: "' + enhancement + '"');
+    });
+
+    generateScenesBtn.addEventListener('click', () => {
+      const script = scriptInput.value.trim();
+      if (!script) {
+        alert('Please enter a script to generate scenes.');
+        return;
+      }
+
+      // Clear previous scenes
+      scenesContainer.innerHTML = '<p class="text-gray-500 italic">Generating scenes...</p>';
+      // Mock scene generation
+      setTimeout(() => {
+        const scenes = script.split(/(?<=[.!?])\s+/).filter(s => s.length > 0).map((text, index) => ({
+          id: index + 1,
+          text,
+          imageUrl: 'https://source.unsplash.com/600x400/?nature,water&sig=' + (index + 1)
+        }));
+
+        scenesContainer.innerHTML = '';
+        scenes.forEach(scene => {
