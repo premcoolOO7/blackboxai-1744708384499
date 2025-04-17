@@ -1,0 +1,14 @@
+{
+  "name": "password-tool",
+  "version": "1.0.0",
+  "description": "Password hashing and verification tool using bcrypt",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2"
+  }
+}
