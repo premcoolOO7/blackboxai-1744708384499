@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold mb-4">Social Media Scheduler</h1>
+        <div class="mb-4">
+            <label for="videoTitle" class="block mb-2">Video Title:</label>
+            <input type="text" id="videoTitle" class="border rounded p-2 w-full" placeholder="Enter video title">
+        </div>
+        <div class="mb-4">
+            <label for="videoTopic" class="block mb-2">Video Topic:</label>
+            <input type="text" id="videoTopic" class="border rounded p-2 w-full" placeholder="Enter video topic">
+        </div>
+        <div class="mb-4">
+            <label for="scheduleTime" class="block mb-2">Schedule Time:</label>
+            <input type="datetime-local" id="scheduleTime" class="border rounded p-2 w-full">
+        </div>
+        <button id="scheduleButton" class="bg-blue-500 text-white rounded p-2">Schedule Post</button>
+        <div id="output" class="mt-4"></div>
+    </div>
+    <script>
+        document.getElementById('scheduleButton').addEventListener('click', function() {
+            const title = document.getElementById('videoTitle').value;
+            const topic = document.getElementById('videoTopic').value;
+            const scheduleTime = document.getElementById('scheduleTime').value;
+
+            // Placeholder for scheduling logic
+            const hashtags = ["#viral", "#trending", "#fyp", "#funny"]; // Example hashtags
+            const caption = `Check out this ${topic}! ${hashtags.join(' ')}`;
+            const scheduledPost = {
+                title: title,
+                topic: topic,
+                scheduleTime: scheduleTime,
+                caption: caption
+            };
+
+            // Display scheduled post information
+            document.getElementById('output').innerText = `Scheduled "${title}" on topic "${topic}" at ${scheduleTime}. Caption: "${caption}".`;
+        });
+    </script>
+</body>
+</html>
