@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Developer Assistant - Multi-Tools Website</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      padding-top: 70px;
+      padding-bottom: 70px;
+      background-color: #f8f9fa;
+    }
+    header, footer {
+      position: fixed;
+      width: 100%;
+      z-index: 1030;
+      background-color: #343a40;
+      color: white;
+    }
+    header {
+      top: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+    footer {
+      bottom: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+    .container {
+      max-width: 900px;
+    }
+    .section-title {
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #212529;
+    }
+    pre {
+      background-color: #e9ecef;
+      padding: 1rem;
+      border-radius: 0.25rem;
+      overflow-x: auto;
+      max-height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container d-flex align-items-center">
+      <i class="fas fa-robot fa-lg me-2"></i>
+      <h1 class="h5 mb-0">AI Developer Assistant</h1>
+      <nav class="ms-auto">
+        <a href="../index.html" class="btn btn-outline-light btn-sm">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mt-4">
+    <h2>AI Developer Assistant CLI Tool</h2>
+    <p>This tool is a command-line interface application that provides AI-powered code generation, debugging, review, workflow optimization, and documentation search capabilities.</p>
+    <h3 class="section-title">How to Use</h3>
+    <ol>
+      <li>Ensure you have Python 3.10+ installed.</li>
+      <li>Set your OpenAI API key in the environment variable <code>OPENAI_API_KEY</code>.</li>
+      <li>Run the tool from the command line:
+        <pre>python3 tools/ai-developer-assistant.py</pre>
+      </li>
+      <li>Use the following commands inside the CLI:
+        <ul>
+          <li><code>!gen <prompt></code> - Generate code based on prompt</li>
+          <li><code>!debug <error message></code> - Get debugging help</li>
+          <li><code>!review <filepath></code> - Review code from file</li>
+          <li><code>!optimize</code> - Optimize your workflow (you will be prompted)</li>
+          <li><code>!exit</code> - Exit the CLI</li>
+        </ul>
+      </li>
+    </ol>
+    <p>This CLI tool leverages OpenAI's GPT-4 model and LangChain for advanced AI assistance in software development.</p>
+  </main>
+
+  <footer>
+    <div class="container text-center">
+      &copy; 2025 Multi-Tools Website. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
