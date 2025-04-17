@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Celestial Wisdom - Professional Astrology Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Georgia', serif;
+    }
+    body {
+      background-color: #0a0a1a;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: rgba(10, 10, 26, 0.9);
+      padding: 1rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 2rem;
+      color: #d4af37;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #d4af37;
+    }
+    main {
+      flex-grow: 1;
+      padding: 6rem 1rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .hero {
+      height: 80vh;
+      background: linear-gradient(rgba(10, 10, 26, 0.7), rgba(10, 10, 26, 0.7)),
+                  url('stars-bg.jpg') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1rem;
+      border-radius: 10px;
+      margin-bottom: 3rem;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      color: #d4af37;
+      text-shadow: 0 0 10px #d4af37;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .cta-button {
+      background-color: #d4af37;
+      color: #0a0a1a;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .cta-button:hover {
+      background-color: #b69830;
+    }
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .service-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+    .service-card h3 {
+      margin-bottom: 1rem;
+      color: #d4af37;
+    }
+    .testimonials {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3rem 1rem;
+      border-radius: 10px;
+      margin-bottom: 3rem;
+    }
+    footer {
+      background: #04040d;
+      padding: 2rem 1rem;
+      text-align: center;
+      color: #888;
+      font-size: 0.9rem;
+    }
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: #d4af37;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: none;
+      font-family: 'Georgia', serif;
+      font-size: 1rem;
+    }
+    button.submit-btn {
+      background-color: #d4af37;
+      color: #0a0a1a;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 100%;
+    }
+    button.submit-btn:hover {
+      background-color: #b69830;
+    }
+    .result {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(212, 175, 55, 0.2);
+      border-radius: 5px;
+      color: #0a0a1a;
+      font-weight: bold;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Celestial Wisdom</div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div>
+        <h1>Discover Your Destiny</h1>
+        <p>Professional Astrological Guidance for Life's Journey</p>
+        <button class="cta-button" onclick="alert('Booking feature coming soon!')">Book a Consultation</button>
+      </div>
+    </section>
+    <section class="services" id="services">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Birth Chart Reading</h3>
+          <p>Uncover your life's blueprint through detailed natal chart analysis</p>
+        </div>
+        <div class="service-card">
+          <h3>Relationship Compatibility</h3>
+          <p>Understand your romantic and business relationships</p>
+        </div>
+        <div class="service-card">
+          <h3>Career Guidance</h3>
+          <p>Align your professional path with cosmic influences</p>
+        </div>
+      </div>
+    </section>
+    <section class="testimonials" id="testimonials">
+      <h2>Client Testimonials</h2>
+      <p>Coming soon...</p>
+    </section>
+    <section id="astro-tool" style="max-width: 600px; margin: 2rem auto;">
+      <h2>Astrology Birth Chart Calculator</h2>
+      <form id="birthChartForm">
+        <label for="birthDate">Birth Date:</label>
+        <input type="date" id="birthDate" name="birthDate" required />
+        <label for="birthTime">Birth Time (optional):</label>
+        <input type="time" id="birthTime" name="birthTime" />
+        <label for="birthPlace">Birth Place (City, Country):</label>
+        <input type="text" id="birthPlace" name="birthPlace" placeholder="e.g. New York, USA" required />
+        <button type="submit" class="submit-btn">Calculate Chart</button>
+      </form>
+      <pre id="chartResult" class="result" style="display:none;"></pre>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 Celestial Wisdom. All rights reserved.</p>
+  </footer>
+  <script>
+    // Simple astrology birth chart calculator mockup
+    document.getElementById('birthChartForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const birthDate = document.getElementById('birthDate').value;
+      const birthTime = document.getElementById('birthTime').value;
+      const birthPlace = document.getElementById('birthPlace').value.trim();
+
+      if (!birthDate || !birthPlace) {
+        alert('Please fill in the required fields.');
+        return;
+      }
+
+      // For demonstration, create a simple mock chart result
+      let resultText = `Birth Chart for ${birthDate}`;
+      if (birthTime) {
+        resultText += ` at ${birthTime}`;
+      }
+      resultText += `\nLocation: ${birthPlace}\n\n`;
+
+      // Mock planetary positions (randomized for demo)
+      const planets = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+      planets.forEach(planet => {
+        const sign = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'][Math.floor(Math.random() * 12)];
+        const degree = (Math.random() * 30).toFixed(2);
+        resultText += `${planet}: ${sign} ${degree}°\n`;
+      });
+
+      const chartResult = document.getElementById('chartResult');
+      chartResult.textContent = resultText;
+      chartResult.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
