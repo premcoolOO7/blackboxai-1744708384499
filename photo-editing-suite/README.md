@@ -8,8 +8,8 @@
     └─ [Mobile SDK] ↔ [Desktop App] ↔ [Web App]
 ```
 
-- AI Engine: AI models for sky replacement, object removal, style transfer.
-- Editing Core: Core photo editing features, layer system, non-destructive editing.
+- AI Engine: AI models for sky replacement, object removal, style transfer, AI Skin Smoothing, Age/Gender Transformation, Smart Background Adjustment.
+- Editing Core: Core photo editing features, layer system, non-destructive editing, advanced retouching tools, and AI enhancements.
 - Cloud Sync: Storage and batch processing via AWS S3 and serverless functions.
 - Mobile SDK: React Native components with native camera integration.
 - Desktop & Web Apps: React-based UI with GPU acceleration.
@@ -17,7 +17,7 @@
 ## Development Roadmap
 
 - Phase 1 (6 months): Core editor + basic AI features.
-- Phase 2 (3 months): Layer system + plugin support.
+- Phase 2 (3 months): Layer system + plugin support + advanced AI features.
 - Phase 3 (2 months): Collaboration and annotation tools.
 
 ## Testing Protocol
