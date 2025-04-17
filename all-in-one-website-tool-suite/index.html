@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Multi-Tools Website with 109 useful tools including video editing, image tools, finance tools, and more." />
+  <meta name="keywords" content="multi-tools, video editing, image tools, finance tools, productivity, SEO tools, health tools" />
+  <meta name="author" content="Multi-Tools Website" />
+  <title>Multi-Tools Website - 109 Useful Tools</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      padding-top: 70px;
+      padding-bottom: 70px;
+      background-color: #f8f9fa;
+    }
+    .tool-card {
+      transition: transform 0.2s ease-in-out;
+      cursor: pointer;
+    }
+    .tool-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    }
+    header, footer {
+      position: fixed;
+      width: 100%;
+      z-index: 1030;
+      background-color: #343a40;
+      color: white;
+    }
+    header {
+      top: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+    footer {
+      bottom: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+    .category-title {
+      font-weight: 700;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      color: #212529;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container d-flex align-items-center">
+      <i class="fas fa-tools fa-lg me-2"></i>
+      <h1 class="h5 mb-0">Multi-Tools Website</h1>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2 class="mb-4 text-center">Explore Our 109 Useful Tools</h2>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <!-- Categories and tools will be dynamically inserted here -->
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/image-tools.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-image fa-3x mb-3 text-primary"></i>
+            <h5 class="card-title text-center">Image Tools</h5>
+            <p class="text-center text-muted">10 tools for image conversion, editing, and optimization</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/image-tools.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-image fa-3x mb-3 text-primary"></i>
+            <h5 class="card-title text-center">Image Tools</h5>
+            <p class="text-center text-muted">10 tools for image conversion, editing, and optimization</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/seo-tools.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-search fa-3x mb-3 text-success"></i>
+            <h5 class="card-title text-center">SEO Tools</h5>
+            <p class="text-center text-muted">10 tools for SEO optimization and analysis</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/text-tools.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-font fa-3x mb-3 text-warning"></i>
+            <h5 class="card-title text-center">Text Tools</h5>
+            <p class="text-center text-muted">10 tools for text manipulation and speech</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/developer-tools.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-code fa-3x mb-3 text-danger"></i>
+            <h5 class="card-title text-center">Developer Tools</h5>
+            <p class="text-center text-muted">10 tools for developers and coders</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/codepilot-studio.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-robot fa-3x mb-3 text-indigo-600"></i>
+            <h5 class="card-title text-center">CodePilot Studio</h5>
+            <p class="text-center text-muted">AI-driven developer assistant for productivity and workflow automation</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/devtools.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-code fa-3x mb-3 text-danger"></i>
+            <h5 class="card-title text-center">Developer Productivity Suite</h5>
+            <p class="text-center text-muted">10 tools for developers and coders</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/celestial-wisdom.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-star fa-3x mb-3 text-yellow-400"></i>
+            <h5 class="card-title text-center">Celestial Wisdom</h5>
+            <p class="text-center text-muted">Professional Astrology Services</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='website-building-and-editing-tools/index.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-tools fa-3x mb-3 text-blue-500"></i>
+            <h5 class="card-title text-center">Website Building & Editing Tools</h5>
+            <p class="text-center text-muted">Drag & Drop Builder and Live HTML Editor</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/security-tools.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-shield-alt fa-3x mb-3 text-info"></i>
+            <h5 class="card-title text-center">Security & Encryption</h5>
+            <p class="text-center text-muted">10 tools for security and encryption</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/social-media-tools.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fab fa-youtube fa-3x mb-3 text-danger"></i>
+            <h5 class="card-title text-center">Social Media Tools</h5>
+            <p class="text-center text-muted">8 tools for social media content and analytics</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/finance-tools.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-dollar-sign fa-3x mb-3 text-success"></i>
+            <h5 class="card-title text-center">Finance Tools</h5>
+            <p class="text-center text-muted">10 tools for budgeting, tips, and calculators</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='photo-editing-suite/web-ui/index.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-camera-retro fa-3x mb-3 text-primary"></i>
+            <h5 class="card-title text-center">Photo Editing Suite</h5>
+            <p class="text-center text-muted">AI-powered photo editing tools for professionals and casual users</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/health-fitness-tools.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-heartbeat fa-3x mb-3 text-danger"></i>
+            <h5 class="card-title text-center">Health & Fitness Tools</h5>
+            <p class="text-center text-muted">7 tools for health tracking and fitness</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/productivity-tools.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-tasks fa-3x mb-3 text-primary"></i>
+            <h5 class="card-title text-center">Productivity Tools</h5>
+            <p class="text-center text-muted">6 tools for time management and tasks</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/education-tools.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-graduation-cap fa-3x mb-3 text-warning"></i>
+            <h5 class="card-title text-center">Education Tools</h5>
+            <p class="text-center text-muted">4 tools for learning and quizzes</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/home-lifestyle-tools.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-home fa-3x mb-3 text-info"></i>
+            <h5 class="card-title text-center">Home & Lifestyle Tools</h5>
+            <p class="text-center text-muted">9 tools for home management and lifestyle</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+      <div class="card tool-card h-100" onclick="location.href='tools/video-tools.html'">
+        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+          <i class="fas fa-video fa-3x mb-3 text-danger"></i>
+          <h5 class="card-title text-center">Video Tools</h5>
+          <p class="text-center text-muted">15 tools for video editing and processing</p>
+        </div>
+      </div>
+    </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/video-processor.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-film fa-3x mb-3 text-warning"></i>
+            <h5 class="card-title text-center">Video Processor</h5>
+            <p class="text-center text-muted">Advanced video processing: convert, trim, add text overlays</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='tools/ai-developer-assistant.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-robot fa-3x mb-3 text-primary"></i>
+            <h5 class="card-title text-center">AI Developer Assistant</h5>
+            <p class="text-center text-muted">CLI tool for AI-powered code generation, debugging, and review</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='site-building-and-editing-tools/text-to-video/'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-video fa-3x mb-3 text-primary"></i>
+            <h5 class="card-title text-center">Text to Video Generator</h5>
+            <p class="text-center text-muted">Generate videos from text with AI-generated images and voiceover</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='site-building-and-editing-tools/celestial-wisdom/index.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-star fa-3x mb-3 text-warning"></i>
+            <h5 class="card-title text-center">Celestial Wisdom</h5>
+            <p class="text-center text-muted">Professional Astrology Services Website</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='password-tool/frontend/index.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-lock fa-3x mb-3 text-danger"></i>
+            <h5 class="card-title text-center">Password Hashing Tool</h5>
+            <p class="text-center text-muted">Secure password hashing and verification service</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card tool-card h-100" onclick="location.href='security-toolkit/frontend/index.html'">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-shield-alt fa-3x mb-3 text-success"></i>
+            <h5 class="card-title text-center">Security Toolkit</h5>
+            <p class="text-center text-muted">All-in-one security platform for modern websites</p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!-- Embedded Video Tool Section -->
+    <section class="mt-5">
+      <h2>Video Trimmer (Embedded Tool)</h2>
+      <p>This is a sample video tool demonstrating loading ffmpeg.wasm on demand.</p>
+
+      <div class="mb-3">
+        <label for="videoFile" class="form-label">Select Video File</label>
+        <input class="form-control" type="file" id="videoFile" accept="video/*" />
+      </div>
+
+      <div class="mb-3">
+        <label for="startTime" class="form-label">Start Time (seconds)</label>
+        <input type="number" class="form-control" id="startTime" value="0" min="0" />
+      </div>
+
+      <div class="mb-3">
+        <label for="duration" class="form-label">Duration (seconds)</label>
+        <input type="number" class="form-control" id="duration" value="10" min="1" />
+      </div>
+
+      <button id="trimButton" class="btn btn-primary" disabled>Trim Video</button>
+      <span id="loading" class="loading ms-3">Loading ffmpeg.wasm, please wait...</span>
+
+      <div class="mt-4" id="outputContainer" style="display:none;">
+        <h3>Trimmed Video Output</h3>
+        <video id="outputVideo" controls style="max-width: 100%;"></video>
+        <a id="downloadLink" href="#" download="trimmed-video.mp4" class="btn btn-success mt-2">Download Trimmed Video</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container text-center">
+      &copy; 2025 Multi-Tools Website. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Load ffmpeg.wasm on demand for embedded video tool -->
+  <script type="module">
+    import { createFFmpeg, fetchFile } from 'https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js';
+
+    const ffmpeg = createFFmpeg({ log: true });
+    const videoFileInput = document.getElementById('videoFile');
+    const trimButton = document.getElementById('trimButton');
+    const loadingText = document.getElementById('loading');
+    const outputContainer = document.getElementById('outputContainer');
+    const outputVideo = document.getElementById('outputVideo');
+    const downloadLink = document.getElementById('downloadLink');
+
+    let videoFile;
+
+    videoFileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        videoFile = e.target.files[0];
+        trimButton.disabled = false;
+        outputContainer.style.display = 'none';
+      } else {
+        trimButton.disabled = true;
+      }
+    });
+
+    trimButton.addEventListener('click', async () => {
+      if (!videoFile) return;
+
+      loadingText.style.display = 'inline';
+      trimButton.disabled = true;
+
+      if (!ffmpeg.isLoaded()) {
+        await ffmpeg.load();
+      }
+
+      const startTime = parseFloat(document.getElementById('startTime').value) || 0;
+      const duration = parseFloat(document.getElementById('duration').value) || 10;
+
+      ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(videoFile));
+
+      await ffmpeg.run(
+        '-ss', startTime.toString(),
+        '-t', duration.toString(),
+        '-i', 'input.mp4',
+        '-c', 'copy',
+        'output.mp4'
+      );
+
+      const data = ffmpeg.FS('readFile', 'output.mp4');
+
+      const videoBlob = new Blob([data.buffer], { type: 'video/mp4' });
+      const videoUrl = URL.createObjectURL(videoBlob);
+
+      outputVideo.src = videoUrl;
+      downloadLink.href = videoUrl;
+      outputContainer.style.display = 'block';
+
+      loadingText.style.display = 'none';
+      trimButton.disabled = false;
+    });
+  </script>
+</body>
+</html>
