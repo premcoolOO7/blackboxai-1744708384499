@@ -24,7 +24,8 @@ async function fetchToolsMetadata() {
 
         console.log('Fetched Tools Metadata:', tools);
     } catch (error) {
-        console.error('Error fetching tools metadata:', error);
+        console.error('Error fetching tools metadata:', error.message);
+        console.error('Please check the GitHub API endpoint and your network connection.');
     }
 }
 
