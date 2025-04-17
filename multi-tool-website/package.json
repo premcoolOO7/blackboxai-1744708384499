@@ -1,0 +1,12 @@
+{
+  "name": "multi-tool-website",
+  "version": "1.0.0",
+  "description": "Multi-tool website for integrating various tools.",
+  "main": "fetch_tools_metadata.js",
+  "scripts": {
+    "fetch-tools": "node fetch_tools_metadata.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
