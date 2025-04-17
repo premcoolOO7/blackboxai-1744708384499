@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Celestial Wisdom - Website Builder & Editor with AI Assistance</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #5a67d8;
+      --secondary-color: #9f7aea;
+      --accent-color: #ecc94b;
+      --background-gradient-start: #1a202c;
+      --background-gradient-end: #2d3748;
+      --text-color-light: #e2e8f0;
+      --text-color-dark: #1a202c;
+      --shadow-glow: 0 0 15px 3px rgba(159, 122, 234, 0.7);
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--background-gradient-start), var(--background-gradient-end));
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: var(--text-color-light);
+      margin: 0;
+    }
+    header {
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      color: var(--text-color-light);
+      padding: 1.75rem 2rem;
+      font-size: 2.25rem;
+      font-weight: 900;
+      text-align: center;
+      box-shadow: var(--shadow-glow);
+      letter-spacing: 0.1em;
+      user-select: none;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+    }
+    main {
+      flex-grow: 1;
+      padding: 2.5rem 3rem;
+      max-width: 1440px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    .builder-container {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: nowrap;
+      height: 740px;
+      background: linear-gradient(145deg, #2c2f4a, #1b1d2f);
+      border-radius: 1.5rem;
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+    }
+    .sidebar, .editor, .preview {
+      padding: 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(145deg, #3a3f6a, #2a2e4a);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+      color: var(--text-color-light);
+    }
+    .sidebar {
+      flex: 0 0 340px;
+      border-right: 2px solid var(--accent-color);
+      overflow-y: auto;
+    }
+    .sidebar h2 {
+      font-size: 1.75rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      border-bottom: 4px solid var(--accent-color);
+      padding-bottom: 0.75rem;
+      color: var(--accent-color);
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 8px var(--accent-color);
+    }
+    .element-list button {
+      width: 100%;
+      text-align: left;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      border: 2px solid var(--secondary-color);
+      border-radius: 1rem;
+      background: linear-gradient(145deg, #4a4f7a, #3a3f6a);
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--text-color-light);
+      transition: background-color 0.4s, border-color 0.4s, color 0.4s, box-shadow 0.4s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 4px 12px rgba(159, 122, 234, 0.5);
+      user-select: none;
+      text-shadow: 0 0 6px var(--secondary-color);
+    }
+    .element-list button:hover, .element-list button:focus {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: var(--background-gradient-start);
+      outline: none;
+      box-shadow: 0 0 20px 4px var(--accent-color);
+      text-shadow: none;
+    }
+    .element-list button i {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 2px var(--accent-color));
+    }
+    .ai-assist {
+      margin-top: 3rem;
+      padding: 1.5rem 2rem;
+      background: linear-gradient(145deg, #4a4f7a, #3a3f6a);
+      border-radius: 1.5rem;
+      color: var(--accent-color);
+      font-weight: 900;
+      box-shadow: inset 0 0 20px var(--accent-color);
+      flex-shrink: 0;
+      user-select: none;
+      text-shadow: 0 0 8px var(--accent-color);
+    }
+    .ai-assist label {
+      display: block;
+      margin-bottom: 1rem;
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: 0.03em;
+    }
+    .ai-assist textarea {
+      width: 100%;
+      height: 120px;
+      padding: 1.25rem;
+      border-radius: 1rem;
+      border: 2px solid var(--secondary-color);
+      resize: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      color: var(--text-color-light);
+      background: #1f223a;
+      transition: border-color 0.4s, box-shadow 0.4s;
+      box-shadow: inset 0 0 16px #6b63c9;
+      text-shadow: 0 0 4px var(--accent-color);
+    }
+    .ai-assist textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 24px var(--accent-color);
+      background: #292c4f;
+    }
+    .ai-assist button {
+      margin-top: 1.25rem;
+      background: var(--accent-color);
+      color: var(--background-gradient-start);
+      padding: 1rem 2rem;
+      border-radius: 1rem;
+      border: none;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 1.25rem;
+      transition: background-color 0.4s, box-shadow 0.4s;
+      width: 100%;
+      user-select: none;
+      box-shadow: 0 8px 24px var(--accent-color);
+      text-shadow: 0 0 8px var(--background-gradient-start);
+    }
+    .ai-assist button:hover, .ai-assist button:focus {
+      background: var(--secondary-color);
+      box-shadow: 0 10px 30px var(--secondary-color);
+      outline: none;
+      color: var(--text-color-light);
+      text-shadow: 0 0 10px var(--background-gradient-start);
+    }
+    .ai-assist p {
+      margin-top: 1rem;
+      font-weight: 900;
+      font-size: 1rem;
+      min-height: 1.75rem;
+      color: var(--accent-color);
+      user-select: none;
+      text-shadow: 0 0 6px var(--accent-color);
+    }
+    .editor {
+      flex: 1 1 720px;
+      border-left: 2px solid var(--accent-color);
+      border-right: 2px solid var(--accent-color);
+      padding: 2.5rem 3rem;
+      overflow-y: auto;
+      background: linear-gradient(145deg, #3a3f6a, #2a2e4a);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+      color: var(--text-color-light);
+    }
+    .editor h2 {
+      font-size: 1.75rem;
+      font-weight: 900;
+      margin-bottom: 1.25rem;
+      border-bottom: 4px solid var(--accent-color);
+      padding-bottom: 0.75rem;
+      color: var(--accent-color);
+      letter-spacing: 0.03em;
+      user-select: none;
+      text-shadow: 0 0 8px var(--accent-color);
+    }
+    .editor textarea {
+      width: 100%;
+      height: 580px;
+      font-family: 'Fira Code', monospace;
+      font-size: 1.1rem;
+      padding: 1.5rem 2rem;
+      border: 2px solid var(--secondary-color);
+      border-radius: 1.5rem;
+      resize: none;
+      box-shadow: inset 0 0 20px #6b63c9;
+      transition: border-color 0.4s, box-shadow 0.4s;
+      user-select: text;
+      background: #1f223a;
+      color: var(--text-color-light);
+      text-shadow: 0 0 6px var(--accent-color);
+    }
+    .editor textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 28px var(--accent-color);
+      background: #292c4f;
+    }
+    .btn {
+      background: var(--accent-color);
+      color: var(--background-gradient-start);
+      padding: 1rem 2.5rem;
+      border-radius: 1.5rem;
+      cursor: pointer;
+      border: none;
+      margin-top: 2rem;
+      font-weight: 900;
+      font-size: 1.25rem;
+      transition: background-color 0.4s, box-shadow 0.4s;
+      align-self: flex-start;
+      box-shadow: 0 10px 28px var(--accent-color);
+      user-select: none;
+      text-shadow: 0 0 8px var(--background-gradient-start);
+    }
+    .btn:hover, .btn:focus {
+      background: var(--secondary-color);
+      box-shadow: 0 12px 36px var(--secondary-color);
+      outline: none;
+      color: var(--text-color-light);
+      text-shadow: 0 0 10px var(--background-gradient-start);
+    }
+    .preview {
+      flex: 1 1 720px;
+      padding: 2.5rem 3rem;
+      overflow-y: auto;
+      border-radius: 1.5rem;
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.8);
+      background: linear-gradient(145deg, #3a3f6a, #2a2e4a);
+      display: flex;
+      flex-direction: column;
+      color: var(--text-color-light);
+    }
+    .preview h2 {
+      font-size: 1.75rem;
+      font-weight: 900;
+      margin-bottom: 1.25rem;
+      border-bottom: 4px solid var(--accent-color);
+      padding-bottom: 0.75rem;
+      padding-left: 1.25rem;
+      color: var(--accent-color);
+      letter-spacing: 0.03em;
+      user-select: none;
+      text-shadow: 0 0 8px var(--accent-color);
+    }
+    #previewFrame {
+      flex-grow: 1;
+      width: 100%;
+      border: none;
+      border-radius: 0 0 1.5rem 1.5rem;
+      box-shadow: inset 0 0 20px #6b63c9;
+      background: #1f223a;
+      color: var(--text-color-light);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      padding: 1rem;
+    }
+    .sidebar::-webkit-scrollbar,
+    .editor::-webkit-scrollbar,
+    .preview::-webkit-scrollbar {
+      width: 12px;
+    }
+    .sidebar::-webkit-scrollbar-track,
+    .editor::-webkit-scrollbar-track,
+    .preview::-webkit-scrollbar-track {
+      background: #1f223a;
+      border-radius: 12px;
+    }
+    .sidebar::-webkit-scrollbar-thumb,
+    .editor::-webkit-scrollbar-thumb,
+    .preview::-webkit-scrollbar-thumb {
+      background: var(--accent-color);
+      border-radius: 12px;
+      box-shadow: 0 0 8px var(--accent-color);
+    }
+    .sidebar::-webkit-scrollbar-thumb:hover,
+    .editor::-webkit-scrollbar-thumb:hover,
+    .preview::-webkit-scrollbar-thumb:hover {
+      background: var(--secondary-color);
+      box-shadow: 0 0 12px var(--secondary-color);
+    }
+  </style>
+</head>
+<body>
+  <header>Celestial Wisdom - Website Builder & Editor with AI Assistance</header>
+  <main>
+    <div class="builder-container" role="main" aria-label="Website building and editing tool">
+      <aside class="sidebar" aria-label="Add Elements Sidebar">
+        <h2>Add Elements</h2>
+        <div class="element-list" role="list">
+          <button data-element="h1" aria-label="Add Heading 1"><i class="fas fa-heading"></i> Heading 1</button>
+          <button data-element="h2" aria-label="Add Heading 2"><i class="fas fa-heading"></i> Heading 2</button>
+          <button data-element="p" aria-label="Add Paragraph"><i class="fas fa-paragraph"></i> Paragraph</button>
+          <button data-element="ul" aria-label="Add List"><i class="fas fa-list"></i> List</button>
+          <button data-element="link" aria-label="Add Hyperlink"><i class="fas fa-link"></i> Hyperlink</button>
+          <button data-element="img" aria-label="Add Image"><i class="fas fa-image"></i> Image</button>
+          <button data-element="video" aria-label="Add Video"><i class="fas fa-video"></i> Video</button>
+          <button data-element="audio" aria-label="Add Audio"><i class="fas fa-music"></i> Audio</button>
+        </div>
+        <div class="ai-assist" aria-label="AI Assistance">
+          <label for="aiPrompt">AI Help: Describe what you want to add</label>
+          <textarea id="aiPrompt" placeholder="E.g., Add a call to action button with blue background" aria-describedby="aiStatus"></textarea>
+          <button id="aiGenerateBtn" aria-live="polite" aria-atomic="true">Generate HTML</button>
+          <p id="aiStatus" role="status" aria-live="polite" aria-atomic="true" style="margin-top:0.5rem;"></p>
+        </div>
+      </aside>
+      <section class="editor" aria-label="HTML Editor">
+        <h2>HTML Editor</h2>
+        <textarea id="htmlEditor" spellcheck="false" placeholder="Write your HTML here..." aria-multiline="true"></textarea>
+        <button class="btn" id="updatePreview">Update Preview</button>
+      </section>
+      <section class="preview" aria-label="Live Preview">
+        <h2>Live Preview</h2>
+        <iframe id="previewFrame" title="Live preview of website content"></iframe>
+      </section>
+    </div>
+  </main>
+  <script>
+    const htmlEditor = document.getElementById('htmlEditor');
+    const previewFrame = document.getElementById('previewFrame');
+    const updatePreviewBtn = document.getElementById('updatePreview');
+    const elementButtons = document.querySelectorAll('.element-list button');
+    const aiPrompt = document.getElementById('aiPrompt');
+    const aiGenerateBtn = document.getElementById('aiGenerateBtn');
+    const aiStatus = document.getElementById('aiStatus');
+
+    function insertAtCursor(textarea, text) {
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const before = textarea.value.substring(0, start);
+      const after = textarea.value.substring(end);
+      textarea.value = before + text + after;
+      textarea.selectionStart = textarea.selectionEnd = start + text.length;
+      textarea.focus();
+    }
+
+    elementButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        let snippet = '';
+        switch(button.dataset.element) {
+          case 'h1':
+            snippet = '<h1>Your Heading</h1>\n';
+            break;
+          case 'h2':
+            snippet = '<h2>Your Subheading</h2>\n';
+            break;
+          case 'p':
+            snippet = '<p>Your paragraph text here.</p>\n';
+            break;
+          case 'ul':
+            snippet = '<ul>\n  <li>List item 1</li>\n  <li>List item 2</li>\n</ul>\n';
+            break;
+          case 'link':
+            snippet = '<a href="https://example.com" target="_blank" rel="noopener noreferrer">Example Link</a>\n';
+            break;
+          case 'img':
+            snippet = '<img src="https://via.placeholder.com/150" alt="Image description" />\n';
+            break;
+          case 'video':
+            snippet = '<video controls src="https://www.w3schools.com/html/mov_bbb.mp4" style="max-width:100%; height:auto;"></video>\n';
+            break;
+          case 'audio':
+            snippet = '<audio controls src="https://www.w3schools.com/html/horse.mp3" style="width:100%;"></audio>\n';
+            break;
+        }
+        insertAtCursor(htmlEditor, snippet);
+      });
+    });
+
+    function updatePreview() {
+      const doc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+      doc.open();
+      doc.write(htmlEditor.value);
+      doc.close();
+    }
+
+    updatePreviewBtn.addEventListener('click', updatePreview);
+
+    updatePreview();
+
+    aiGenerateBtn.addEventListener('click', () => {
+      const prompt = aiPrompt.value.trim();
+      if (!prompt) {
+        aiStatus.textContent = 'Please enter a description for AI help.';
+        return;
+      }
+      aiStatus.textContent = 'Generating HTML...';
+
+      setTimeout(() => {
+        let generatedHTML = '';
+        if (prompt.toLowerCase().includes('button')) {
+          generatedHTML = '<button class="btn">AI Generated Button</button>\n';
+        } else if (prompt.toLowerCase().includes('heading')) {
+          generatedHTML = '<h2>AI Generated Heading</h2>\n';
+        } else if (prompt.toLowerCase().includes('image')) {
+          generatedHTML = '<img src="https://via.placeholder.com/300" alt="AI Generated Image" />\n';
+        } else if (prompt.toLowerCase().includes('video')) {
+          generatedHTML = '<video controls src="https://www.w3schools.com/html/mov_bbb.mp4" style="max-width:100%; height:auto;"></video>\n';
+        } else if (prompt.toLowerCase().includes('audio')) {
+          generatedHTML = '<audio controls src="https://www.w3schools.com/html/horse.mp3" style="width:100%;"></audio>\n';
+        } else {
+          generatedHTML = `<p>${prompt}</p>\n`;
+        }
+        insertAtCursor(htmlEditor, generatedHTML);
+        aiStatus.textContent = 'HTML generated and inserted.';
+        updatePreview();
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
