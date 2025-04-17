@@ -1,0 +1,8 @@
+all-in-one-financial-toolkit/
+├── core/
+│   ├── plaid_bank_sync.py
+│   └── double_entry_accounting.js
+├── web-ui/
+│   └── TaxCalculator.jsx
+├── ENHANCED_PROMPT.md
+└── README.md
