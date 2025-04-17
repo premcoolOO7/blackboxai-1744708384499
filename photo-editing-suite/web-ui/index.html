@@ -12,171 +12,175 @@
 </head>
 <body class="bg-gray-100">
   <div id="root" class="h-screen"></div>
-
   <script type="text/babel" data-type="module" data-presets="react">
-    const { useState, useRef } = React;
+    const { useState } = React;
+
+    function App() {
+      const [activeTool, setActiveTool] = useState('imageEditor');
+
+      return (
+        <div className="min-h-screen bg-gray-100 p-6 font-sans">
+          <header className="max-w-5xl mx-auto mb-8">
+            <h1 className="text-4xl font-bold text-center text-indigo-700 mb-4">PhotoMaster Pro - MultiTool</h1>
+            <nav className="flex justify-center space-x-4 flex-wrap gap-2">
+              <button
+                onClick={() => setActiveTool('imageEditor')}
+                className={`px-4 py-2 rounded-md font-semibold transition ${
+                  activeTool === 'imageEditor' ? 'bg-indigo-600 text-white' : 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200'
+                }`}
+                aria-current={activeTool === 'imageEditor' ? 'page' : undefined}
+              >
+                Image Editor
+              </button>
+              <button
+                onClick={() => setActiveTool('aiSkyReplacement')}
+                className={`px-4 py-2 rounded-md font-semibold transition ${
+                  activeTool === 'aiSkyReplacement' ? 'bg-indigo-600 text-white' : 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200'
+                }`}
+                aria-current={activeTool === 'aiSkyReplacement' ? 'page' : undefined}
+              >
+                AI Sky Replacement
+              </button>
+              <button
+                onClick={() => setActiveTool('nonDestructiveEditing')}
+                className={`px-4 py-2 rounded-md font-semibold transition ${
+                  activeTool === 'nonDestructiveEditing' ? 'bg-indigo-600 text-white' : 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200'
+                }`}
+                aria-current={activeTool === 'nonDestructiveEditing' ? 'page' : undefined}
+              >
+                Non-Destructive Editing
+              </button>
+              <button
+                onClick={() => setActiveTool('contentAwareFill')}
+                className={`px-4 py-2 rounded-md font-semibold transition ${
+                  activeTool === 'contentAwareFill' ? 'bg-indigo-600 text-white' : 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200'
+                }`}
+                aria-current={activeTool === 'contentAwareFill' ? 'page' : undefined}
+              >
+                Content-Aware Fill
+              </button>
+              <button
+                onClick={() => setActiveTool('pdfReader')}
+                className={`px-4 py-2 rounded-md font-semibold transition ${
+                  activeTool === 'pdfReader' ? 'bg-indigo-600 text-white' : 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200'
+                }`}
+                aria-current={activeTool === 'pdfReader' ? 'page' : undefined}
+              >
+                PDF Reader
+              </button>
+            </nav>
+          </header>
+          <main className="max-w-5xl mx-auto">
+            {activeTool === 'imageEditor' && <ImageEditor />}
+            {activeTool === 'aiSkyReplacement' && <AISkyReplacement />}
+            {activeTool === 'nonDestructiveEditing' && <NonDestructiveEditing />}
+            {activeTool === 'contentAwareFill' && <ContentAwareFill />}
+            {activeTool === 'pdfReader' && <PdfReader />}
+          </main>
+        </div>
+      );
+    }
 
     function ImageEditor() {
-      const [imageSrc, setImageSrc] = useState(null);
-      const [rotation, setRotation] = useState(0);
-      const [scale, setScale] = useState(1);
-      const [brightness, setBrightness] = useState(100);
-      const [contrast, setContrast] = useState(100);
-      const imgRef = useRef(null);
+      const [imageSrc, setImageSrc] = React.useState(null);
+      const [brightness, setBrightness] = React.useState(100);
+      const [contrast, setContrast] = React.useState(100);
+      const [saturation, setSaturation] = React.useState(100);
+      const canvasRef = React.useRef(null);
+      const imageRef = React.useRef(null);
 
-      const onFileChange = (e) => {
+      const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
           const url = URL.createObjectURL(file);
           setImageSrc(url);
-          setRotation(0);
-          setScale(1);
-          setBrightness(100);
-          setContrast(100);
         }
       };
 
-      const rotateLeft = () => setRotation((r) => r - 90);
-      const rotateRight = () => setRotation((r) => r + 90);
-      const zoomIn = () => setScale((s) => Math.min(s + 0.1, 3));
-      const zoomOut = () => setScale((s) => Math.max(s - 0.1, 0.1));
-      const onBrightnessChange = (e) => setBrightness(e.target.value);
-      const onContrastChange = (e) => setContrast(e.target.value);
+      React.useEffect(() => {
+        if (!imageSrc) return;
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext('2d');
+        const img = imageRef.current;
+
+        img.onload = () => {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%)`;
+          ctx.drawImage(img, 0, 0);
+        };
+      }, [imageSrc, brightness, contrast, saturation]);
 
       return (
-        <div>
-          <input type="file" accept="image/*" onChange={onFileChange} />
-          {imageSrc && (
-            <div className="mt-4">
-              <div className="mb-2 flex flex-wrap gap-2">
-                <button className="btn btn-primary bg-blue-600 text-white px-3 py-1 rounded" onClick={rotateLeft}>Rotate Left</button>
-                <button className="btn btn-primary bg-blue-600 text-white px-3 py-1 rounded" onClick={rotateRight}>Rotate Right</button>
-                <button className="btn btn-secondary bg-gray-300 px-3 py-1 rounded" onClick={zoomOut}>Zoom Out</button>
-                <button className="btn btn-secondary bg-gray-300 px-3 py-1 rounded" onClick={zoomIn}>Zoom In</button>
+        <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+          <h2 className="text-2xl font-bold mb-4 text-center text-indigo-700">Image Editor</h2>
+          <div className="mb-4 text-center">
+            <input type="file" accept="image/*" onChange={handleImageUpload} className="block mx-auto" />
+          </div>
+          {imageSrc ? (
+            <>
+              <canvas ref={canvasRef} className="mx-auto block rounded-md shadow-md" />
+              <img ref={imageRef} src={imageSrc} alt="Source" className="hidden" />
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label htmlFor="brightness" className="block font-semibold mb-1">Brightness</label>
+                  <input
+                    id="brightness"
+                    type="range"
+                    min="0"
+                    max="200"
+                    value={brightness}
+                    onChange={(e) => setBrightness(e.target.value)}
+                    className="w-full"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contrast" className="block font-semibold mb-1">Contrast</label>
+                  <input
+                    id="contrast"
+                    type="range"
+                    min="0"
+                    max="200"
+                    value={contrast}
+                    onChange={(e) => setContrast(e.target.value)}
+                    className="w-full"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="saturation" className="block font-semibold mb-1">Saturation</label>
+                  <input
+                    id="saturation"
+                    type="range"
+                    min="0"
+                    max="200"
+                    value={saturation}
+                    onChange={(e) => setSaturation(e.target.value)}
+                    className="w-full"
+                  />
+                </div>
               </div>
-              <div className="mb-4 flex flex-col max-w-sm gap-4">
-                <label>
-                  Brightness: {brightness}%
-                  <input type="range" min="0" max="200" value={brightness} onChange={onBrightnessChange} />
-                </label>
-                <label>
-                  Contrast: {contrast}%
-                  <input type="range" min="0" max="200" value={contrast} onChange={onContrastChange} />
-                </label>
-              </div>
-              <div className="border p-2 inline-block max-w-full max-h-[400px] overflow-auto">
-                <img
-                  ref={imgRef}
-                  src={imageSrc}
-                  alt="Uploaded"
-                  style={{
-                    transform: \`rotate(\${rotation}deg) scale(\${scale})\`,
-                    filter: \`brightness(\${brightness}%) contrast(\${contrast}%)\`,
-                    maxWidth: '100%',
-                    maxHeight: '400px',
-                    display: 'block',
-                    margin: '0 auto',
-                  }}
-                />
-              </div>
-            </div>
+            </>
+          ) : (
+            <p className="text-center text-gray-500 mt-6">Upload an image to start editing.</p>
           )}
         </div>
       );
     }
 
     function AISkyReplacement() {
-      return (
-        <div>
-          <h3 className="text-lg font-semibold mb-2">AI Sky Replacement</h3>
-          <p>This tool allows you to automatically replace the sky in your photos using AI.</p>
-          <p>Integration with AI backend coming soon.</p>
-          <button className="btn btn-primary bg-blue-600 text-white px-3 py-1 rounded mt-4" disabled>Upload Image & Replace Sky (Coming Soon)</button>
-        </div>
-      );
+      return <div className="text-center text-gray-600 mt-20">AI Sky Replacement Component (Coming Soon)</div>;
     }
 
     function NonDestructiveEditing() {
-      return (
-        <div>
-          <h3 className="text-lg font-semibold mb-2">Non-Destructive Editing</h3>
-          <p>Supports layers, masks, and history for non-destructive photo editing.</p>
-          <p>Feature development in progress.</p>
-          <button className="btn btn-primary bg-blue-600 text-white px-3 py-1 rounded mt-4" disabled>Open Editor (Coming Soon)</button>
-        </div>
-      );
+      return <div className="text-center text-gray-600 mt-20">Non-Destructive Editing Component (Coming Soon)</div>;
     }
 
     function ContentAwareFill() {
-      return (
-        <div>
-          <h3 className="text-lg font-semibold mb-2">Content-Aware Fill</h3>
-          <p>Remove unwanted objects from photos seamlessly using content-aware fill.</p>
-          <p>Integration with AI backend coming soon.</p>
-          <button className="btn btn-primary bg-blue-600 text-white px-3 py-1 rounded mt-4" disabled>Upload Image & Remove Object (Coming Soon)</button>
-        </div>
-      );
+      return <div className="text-center text-gray-600 mt-20">Content-Aware Fill Component (Coming Soon)</div>;
     }
 
-    const features = [
-      { id: 'basic', name: 'Basic Tools', description: 'Crop, rotate, resize, exposure/contrast, color correction' },
-      { id: 'retouching', name: 'Retouching', description: 'Blemish removal, clone stamp, content-aware fill, red-eye correction' },
-      { id: 'advanced', name: 'Advanced Editing', description: 'Layer/mask support, curves/levels, selective adjustments, liquify' },
-      { id: 'ai', name: 'AI Automation', description: 'Auto-enhance, sky replacement, object removal, portrait retouching' },
-      { id: 'creative', name: 'Creative Effects', description: 'Presets/filters, double exposure, HDR merge, text/overlay tools' },
-      { id: 'workflow', name: 'Workflow', description: 'Batch processing, history panel, non-destructive editing, cloud sync' },
-      { id: 'output', name: 'Output', description: 'Format conversion, metadata editing, social media templates, watermarking' },
-    ];
-
-    function PlaceholderFeature({ name }) {
-      return (
-        <div className="p-4 bg-gray-50 border border-gray-300 rounded">
-          <p>{name} tools UI will be implemented here.</p>
-          <p>Feature integration with AI and editing modules coming soon.</p>
-        </div>
-      );
-    }
-
-    function App() {
-      const [selectedFeature, setSelectedFeature] = React.useState(features[0].id);
-
-      const renderFeature = () => {
-        switch (selectedFeature) {
-          case 'basic':
-            return <ImageEditor />;
-          case 'ai':
-            return <AISkyReplacement />;
-          case 'advanced':
-            return <NonDestructiveEditing />;
-          case 'retouching':
-            return <ContentAwareFill />;
-          default:
-            return <PlaceholderFeature name={features.find(f => f.id === selectedFeature).name} />;
-        }
-      };
-
-      return (
-        <div className="flex h-screen bg-gray-100">
-          <nav className="w-64 bg-white shadow-md p-4 overflow-y-auto">
-            <h1 className="text-xl font-bold mb-6">PhotoMaster Pro</h1>
-            <ul>
-              {features.map(feature => (
-                <li key={feature.id} className={`mb-3 cursor-pointer p-2 rounded ${selectedFeature === feature.id ? 'bg-blue-500 text-white' : 'hover:bg-blue-100'}`}
-                  onClick={() => setSelectedFeature(feature.id)}>
-                  {feature.name}
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <main className="flex-1 p-6 overflow-y-auto">
-            <h2 className="text-2xl font-semibold mb-4">{features.find(f => f.id === selectedFeature).name}</h2>
-            <p className="mb-6">{features.find(f => f.id === selectedFeature).description}</p>
-            <div className="bg-white p-4 rounded shadow min-h-[400px]">
-              {renderFeature()}
-            </div>
-          </main>
-        </div>
-      );
+    function PdfReader() {
+      return <div className="text-center text-gray-600 mt-20">PDF Reader Component (Coming Soon)</div>;
     }
 
     ReactDOM.createRoot(document.getElementById('root')).render(<App />);
