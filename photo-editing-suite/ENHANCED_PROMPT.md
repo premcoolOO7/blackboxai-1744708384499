@@ -1,7 +1,7 @@
 # All-in-One AI-Powered Photo Editing Suite - Enhanced Prompt
 
 ## Objective
-Design PhotoMaster Pro, a unified photo editing platform integrating essential photo editing functions into a single tool. Prioritize seamless integration of professional-grade tools, AI automation, and mobile/desktop interoperability with a lightweight, intuitive interface for casual users and professionals.
+Design Master Photo Editor Pro, a unified photo editing platform integrating essential photo editing functions into a single tool. Prioritize seamless integration of professional-grade tools, AI automation, and mobile/desktop interoperability with a lightweight, intuitive interface for casual users and professionals.
 
 ## Core Requirements
 
@@ -9,8 +9,8 @@ Design PhotoMaster Pro, a unified photo editing platform integrating essential p
 - Basic Tools: Crop, rotate, resize, exposure/contrast, color correction.
 - Retouching: Blemish removal, clone stamp, content-aware fill, red-eye correction.
 - Advanced Editing: Layer/mask support, curves/levels, selective adjustments, liquify.
-- AI Automation: Auto-enhance, sky replacement, object removal, portrait retouching.
-- Creative Effects: Presets/filters, double exposure, HDR merge, text/overlay tools.
+- AI Automation: Auto-enhance, sky replacement, object removal, portrait retouching, AI Skin Smoothing, Age/Gender Transformation, Smart Background Adjustment.
+- Creative Effects: Presets/filters, double exposure, HDR merge, text/overlay tools, Virtual Makeup Studio, AR Filters, Style Transfer.
 - Workflow: Batch processing, history panel, non-destructive editing, cloud sync.
 - Output: Format conversion, metadata editing, social media templates, watermarking.
 
@@ -18,7 +18,7 @@ Design PhotoMaster Pro, a unified photo editing platform integrating essential p
 - Smart Enhance: Auto-detect and fix lighting/color issues.
 - Contextual Suggestions: Recommend edits based on image type.
 - Generative Fill: Expand canvas or replace backgrounds using diffusion models.
-- AI Presets: Style transfer (e.g., Van Gogh painting).
+- AI Presets: Style transfer (e.g., Van Gogh painting), AI Portrait Enhancer, Deepfake & Face Swap.
 
 ## Technical Specifications
 - Frontend: React UI with GPU acceleration for real-time previews.
