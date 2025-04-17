@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Photo Editor</title>
+    <style>
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .tool-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        input, button { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Photo Editor</h1>
+        
+        <!-- Background Removal -->
+        <div class="tool-section">
+            <h2>Background Removal</h2>
+            <form action="/remove_bg" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <button type="submit">Remove Background</button>
+            </form>
+        </div>
+
+        <!-- Style Transfer -->
+        <div class="tool-section">
+            <h2>Style Transfer</h2>
+            <form action="/style_transfer" method="post" enctype="multipart/form-data">
+                <p>Content Image: <input type="file" name="content" required></p>
+                <p>Style Image: <input type="file" name="style" required></p>
+                <button type="submit">Apply Style Transfer</button>
+            </form>
+        </div>
+
+        <!-- Text to Image -->
+        <div class="tool-section">
+            <h2>Text to Image</h2>
+            <form action="/text_to_image" method="post">
+                <input type="text" name="prompt" placeholder="Enter image description" required>
+                <button type="submit">Generate Image</button>
+            </form>
+        </div>
+
+        <!-- Auto Enhance -->
+        <div class="tool-section">
+            <h2>Auto Enhance</h2>
+            <form action="/auto_enhance" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <button type="submit">Enhance Image</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
