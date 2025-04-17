@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enhanced SEO Tool Suite</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+  <header class="bg-blue-800 text-white p-4 text-center text-3xl font-bold flex justify-between items-center">
+    <div>Enhanced SEO Tool Suite</div>
+    <div id="authSection" class="space-x-4">
+      <button id="loginBtn" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Login</button>
+      <button id="logoutBtn" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded hidden">Logout</button>
+    </div>
+  </header>
+  <main class="flex-grow container mx-auto p-6 max-w-5xl space-y-10">
+    <!-- Keyword Research -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">Keyword Research</h2>
+      <div class="flex gap-3 mb-4">
+        <input id="keywordInput" type="text" placeholder="Enter keyword" class="flex-grow p-3 border border-gray-300 rounded shadow" autocomplete="off" />
+        <button id="searchKeywordBtn" class="bg-blue-700 text-white px-6 rounded shadow hover:bg-blue-800 flex items-center">
+          <span>Search</span>
+          <svg id="keywordLoading" class="animate-spin h-6 w-6 ml-3 hidden text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="keywordResults" class="bg-white p-5 rounded shadow max-h-72 overflow-auto min-h-[120px]"></div>
+    </section>
+
+    <!-- Site Audit -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">Site Audit</h2>
+      <div class="flex gap-3 mb-4">
+        <input id="auditUrlInput" type="url" placeholder="Enter website URL" class="flex-grow p-3 border border-gray-300 rounded shadow" />
+        <button id="runAuditBtn" class="bg-green-700 text-white px-6 rounded shadow hover:bg-green-800 flex items-center">
+          <span>Run Audit</span>
+          <svg id="auditLoading" class="animate-spin h-6 w-6 ml-3 hidden text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="auditResults" class="bg-white p-5 rounded shadow max-h-72 overflow-auto min-h-[120px]"></div>
+    </section>
+
+    <!-- Meta Tag Generator -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">Meta Tag Generator</h2>
+      <div class="flex gap-3 mb-4">
+        <input id="metaKeywordsInput" type="text" placeholder="Enter keywords separated by commas" class="flex-grow p-3 border border-gray-300 rounded shadow" />
+        <button id="runMetaTagBtn" class="bg-yellow-700 text-white px-6 rounded shadow hover:bg-yellow-800 flex items-center">
+          <span>Generate Meta Tags</span>
+          <svg id="metaTagLoading" class="animate-spin h-6 w-6 ml-3 hidden text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="metaTagResults" class="bg-white p-5 rounded shadow max-h-72 overflow-auto min-h-[120px]"></div>
+    </section>
+  </main>
+
+  <script>
+    const backendBaseUrl = 'http://127.0.0.1:5000';
+
+    // Elements
+    const keywordInput = document.getElementById('keywordInput');
+    const searchKeywordBtn = document.getElementById('searchKeywordBtn');
+    const keywordResults = document.getElementById('keywordResults');
+    const keywordLoading = document.getElementById('keywordLoading');
+
+    const auditUrlInput = document.getElementById('auditUrlInput');
+    const runAuditBtn = document.getElementById('runAuditBtn');
+    const auditResults = document.getElementById('auditResults');
+    const auditLoading = document.getElementById('auditLoading');
+
+    const metaKeywordsInput = document.getElementById('metaKeywordsInput');
+    const runMetaTagBtn = document.getElementById('runMetaTagBtn');
+    const metaTagResults = document.getElementById('metaTagResults');
+    const metaTagLoading = document.getElementById('metaTagLoading');
+
+    // Keyword Research
+    searchKeywordBtn.addEventListener('click', () => {
+      const query = keywordInput.value.trim();
+      if (!query) {
+        alert('Please enter a keyword');
+        return;
+      }
+      keywordResults.innerHTML = '';
+      keywordLoading.classList.remove('hidden');
+      fetch(`${backendBaseUrl}/api/keyword-analysis`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({keywords: [query]})
+      })
+      .then(res => res.json())
+      .then(data => {
+        keywordLoading.classList.add('hidden');
+        if (data.error) {
+          keywordResults.innerHTML = `<p class="text-red-600">${data.error}</p>`;
+          return;
+        }
+        if (data.results.length === 0) {
+          keywordResults.innerHTML = '<p>No results found.</p>';
+          return;
+        }
+        const list = document.createElement('ul');
+        list.className = 'list-disc pl-5';
+        data.results.forEach(item => {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${item.keyword}</strong> - Volume: ${item.search_volume || 0}, Competition: ${item.competition || 0}, Relevance: ${item.relevance || 0}`;
+          list.appendChild(li);
+        });
+        keywordResults.appendChild(list);
+      })
+      .catch(() => {
+        keywordLoading.classList.add('hidden');
+        keywordResults.innerHTML = '<p class="text-red-600">Error fetching keyword data.</p>';
+      });
+    });
+
+    // Site Audit
+    runAuditBtn.addEventListener('click', () => {
+      const url = auditUrlInput.value.trim();
+      if (!url) {
+        alert('Please enter a URL');
+        return;
+      }
+      auditResults.innerHTML = '';
+      auditLoading.classList.remove('hidden');
+      fetch(`${backendBaseUrl}/api/site-audit`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({url})
+      })
+      .then(res => res.json())
+      .then(data => {
+        auditLoading.classList.add('hidden');
+        if (data.error) {
+          auditResults.innerHTML = `<p class="text-red-600">${data.error}</p>`;
+          return;
+        }
+        let html = `<h3 class="font-semibold">Crawlability Issues:</h3><ul class="list-disc pl-5">`;
+        for (const [key, value] of Object.entries(data.crawlability)) {
+          html += `<li>${key.replace(/_/g, ' ')}: ${value}</li>`;
+        }
+        html += `</ul>`;
+        html += `<h3 class="font-semibold mt-4">Performance Metrics:</h3><ul class="list-disc pl-5">`;
+        for (const [key, value] of Object.entries(data.performance)) {
+          html += `<li>${key.toUpperCase()}: ${value} ms</li>`;
+        }
+        html += `</ul>`;
+        html += `<p class="mt-4">Mobile Friendly: <strong>${data.mobile_friendly ? 'Yes' : 'No'}</strong></p>`;
+        html += `<h3 class="font-semibold mt-4">Issues:</h3><ul class="list-disc pl-5">`;
+        data.issues.forEach(issue => {
+          html += `<li>${issue}</li>`;
+        });
+        html += `</ul>`;
+        auditResults.innerHTML = html;
+      })
+      .catch(() => {
+        auditLoading.classList.add('hidden');
+        auditResults.innerHTML = '<p class="text-red-600">Error running site audit.</p>';
+      });
+    });
+
+    // Meta Tag Generator
+    runMetaTagBtn.addEventListener('click', () => {
+      const keywordsStr = metaKeywordsInput.value.trim();
+      if (!keywordsStr) {
+        alert('Please enter keywords');
+        return;
+      }
+      const keywords = keywordsStr.split(',').map(k => k.trim()).filter(k => k.length > 0);
+      if (keywords.length === 0) {
+        alert('Please enter valid keywords');
+        return;
+      }
+      metaTagResults.innerHTML = '';
+      metaTagLoading.classList.remove('hidden');
+      fetch(`${backendBaseUrl}/api/meta-tag-generator`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({keywords})
+      })
+      .then(res => res.json())
+      .then(data => {
+        metaTagLoading.classList.add('hidden');
+        if (data.error) {
+          metaTagResults.innerHTML = `<p class="text-red-600">${data.error}</p>`;
+          return;
+        }
+        let html = `<p><strong>Meta Title:</strong> ${data.meta_title}</p>`;
+        html += `<p><strong>Meta Description:</strong> ${data.meta_description}</p>`;
+        metaTagResults.innerHTML = html;
+      })
+      .catch(() => {
+        metaTagLoading.classList.add('hidden');
+        metaTagResults.innerHTML = '<p class="text-red-600">Error generating meta tags.</p>';
+      });
+    });
+  </script>
+</body>
+</html>
